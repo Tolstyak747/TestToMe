@@ -1,6 +1,7 @@
 package com.Malkov.domain;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Entity
 @Component
+@Data
 public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,11 +23,6 @@ public class Device {
     private List<Event> events;
 
     public Device() {
-    }
-
-
-    public List<Event> getEvents() {
-        return events;
     }
 
     public boolean hasError(List<Event> events) {
@@ -72,34 +69,6 @@ public class Device {
                 "errorCount: " + error;
     }
 
-    public void setEvents(List<Event> events) {
-        this.events = events;
-    }
-
-
-    public Project getProjects() {
-        return project;
-    }
-
-    public void setProjects(Project project) {
-        this.project = project;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getSerialNumber() {
-        return serialNumber;
-    }
-
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
-    }
 
     @Override
     public String toString() {

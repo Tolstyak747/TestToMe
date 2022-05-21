@@ -1,6 +1,7 @@
 package com.Malkov.domain;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Component
+@Data
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,29 +20,6 @@ public class Project {
 
     public Project() {
     }
-
-
-    public List<Device> getDevices() {
-        return devices;
-    }
-
-    public void setDevices(List<Device> devices) {
-        this.devices = devices;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int countEr(List<Device> devices) {
         int count = 0;
         for (Device d : devices) {
@@ -73,7 +52,14 @@ public class Project {
 
     @Override
     public String toString() {
-        return "id: " + id + "\n" + "projectName: " + "'" + name + "'" + "\n" + "stats: {" + " \n" + "   deviceCount: " + this.devices.size() + ",\n" + "   deviceWithErrors: " + countEr(this.devices) + ",\n" + "   stableDevices=" + countStbl(this.devices) + ",\n" + "}" + ",\n" + "devices:" + nameOfDevices(this.devices) + "\n";
+        return "id: " + id + "\n" +
+                "projectName: " + "'" + name + "'" + "\n" +
+                "stats: {" + " \n" +
+                "   deviceCount: " + this.devices.size() + ",\n" +
+                "   deviceWithErrors: " + countEr(this.devices) + ",\n" +
+                "   stableDevices=" + countStbl(this.devices) + ",\n" +
+                "}" + ",\n" +
+                "devices:" + nameOfDevices(this.devices) + "\n";
 
     }
 }
